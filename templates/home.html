@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% block title %}Seth Jones{% endblock %}
+{% block content %}
+
+
+  <div class="hero-text">
+    <div id="hero-header">Seth Jones</div>
+    <div id="hero-description">Software Engineer</div>
+  </div>
+  
+  <div id="hero-description" style="font-size: small;">
+    <i>Finding creativity in complexity</i>
+  </div>
+
+  <div class="hero-canvas">
+    <canvas id="particlesCanvas"></canvas>
+  </div>
+
+
+  <div id="main">
+    <section class="about">
+      <div class="table">
+        <h1>About Me</h1>
+        <p>
+          I’m currently a Software Engineer at <a href="https://www.labcorp.com/">Labcorp</a>, working with the Next-Gen Sequencing (NGS) team. 
+          I earned my undergraduate degree in both History and Computer Science from UNC Charlotte (UNCC), where I developed a passion for computers and mathematics.
+        </p>
+        <h1>Projects and Interests</h1>
+        <p>
+          My interests lie at the intersection of computer science, mathematics, and real-world problem solving. 
+          I’m particularly interested in areas like machine learning, numerical methods, and partial/stochastic differential equations (PDEs/SPDEs).
+          Outside of my technical work, I’m a lifelong cyclist and a newly passionate runner. 
+          The discipline, strategy, and endurance I’ve developed on the bike directly influence how I approach and solve complex problems. 
+          I am also deeply committed to writing efficient, high-performance code because, much like cycling, every marginal gain counts.
+        </p>
+      </div>
+    </section>
+
+
+    <div class="img-div"></div>
+
+    <section class="connect">
+      <h1>Connect with Me</h1>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/seth-jones-980242249/" class="social-icons" aria-label="LinkedIn">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+        <a href="https://github.com/joneseth1" class="social-icons" aria-label="GitHub">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+
+  <script>
+    const canvas = document.getElementById("particlesCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const maxDistance = 100;
+
+    let mouse = {
+      x: null,
+      y: null,
+      dragging: false,
+    };
+
+    function getParticleCount() {
+      const cssArea = canvas.clientWidth * canvas.clientHeight;
+      return Math.min(300, Math.floor(cssArea / 1000)); // adjustable scale
+    }
+
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+    }
+
+    function createParticles() {
+      const particleCount = getParticleCount();
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.clientWidth,
+          y: Math.random() * canvas.clientHeight,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDistance) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255,255,255,${1 - dist / maxDistance})`;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function updateParticles() {
+      let closest = null;
+      let closestDist = Infinity;
+
+      if (mouse.dragging) {
+        for (const p of particles) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < closestDist) {
+            closestDist = dist;
+            closest = p;
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        if (p === closest && mouse.dragging) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const force = Math.min(5 / (dist || 1), 0.5);
+          p.vx += force * dx * 0.01;
+          p.vy += force * dy * 0.01;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x <= 0 || p.x >= canvas.clientWidth) p.vx *= -1;
+        if (p.y <= 0 || p.y >= canvas.clientHeight) p.vy *= -1;
+      });
+    }
+
+    function animate() {
+      drawParticles();
+      updateParticles();
+      requestAnimationFrame(animate);
+    }
+
+    canvas.addEventListener("mousedown", (e) => {
+      mouse.dragging = true;
+      mouse.x = e.offsetX;
+      mouse.y = e.offsetY;
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (mouse.dragging) {
+        mouse.x = e.offsetX;
+        mouse.y = e.offsetY;
+      }
+    });
+
+    canvas.addEventListener("mouseup", () => {
+      mouse.dragging = false;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      mouse.dragging = false;
+    });
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    resizeCanvas();
+    createParticles();
+    animate();
+  </script>
+
+{% endblock %}
