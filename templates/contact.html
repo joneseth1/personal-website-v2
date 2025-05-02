@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Contact - Seth Jones{% endblock %}
+{% block content %}
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+
+
+  <div class="contact-section">
+    <h1 class="section-title">Get in Touch</h1>
+    <p class="contact-description">Feel free to reach out for collaborations, questions, or just to say hi.</p>
+    <p style="margin-bottom: 1rem; font-size: 1rem; color: #666;">
+      Just a heads up: I use <a href="https://formspree.io/"> Frormspree </a> to send the form to my email, so after you submit, 
+      you'll be briefly redirected to Formspree for confirmation.
+    </p>
+  
+    <form action="https://formspree.io/f/mjkwgjob" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    
+  
+    <div class="direct-links">
+      <p>
+        <a href="mailto:joneseth35@gmail.com">Email</a> | 
+        <a href="https://github.com/joneseth1" target="_blank">GitHub</a> | 
+        <a href="https://www.linkedin.com/in/seth-jones-980242249/" target="_blank">LinkedIn</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}
