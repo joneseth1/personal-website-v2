@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Projects - Seth Jones{% endblock %}
+{% block content %}
+
+
+  <div class="projects-section">
+    <h1 class="section-title">Projects</h1>
+    <p class="project-note">
+      These are not all of my projects but rather just a few that I felt were large enough to showcase.
+      For a full look at my public code (including many other projects), please visit
+      <a href="https://github.com/joneseth1" target="_blank">my GitHub</a>.
+    </p>
+
+    <div class="card-grid">
+      {% for name, project in projects.items() %}
+        <div class="project-card">
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.description }}</p>
+          {% if project.github %}
+            <a href="{{ project.github }}" target="_blank">View on GitHub</a>
+          {% endif %}
+          <p></p>
+          <a href="{{ url_for('project_detail', project_name=name) }}">Read more</a>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}

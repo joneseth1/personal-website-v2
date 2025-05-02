@@ -1,0 +1,36 @@
+note-mode:
+  title: Note Mode
+  description: >
+    A customizable, full-featured note-taking web app built with Flask, allowing users to organize notes into "Modes" tailored to specific use cases.
+  tech_stack: [Python, Flask, JavaScript, HTML/CSS]
+  github: "https://github.com/joneseth1/NoteMode"
+  did: >
+    I created a note-taking app using Python and Flask as my capstone project at UNC Charlotte. I identified 12 core user stories and implemented them as features over the course of four sprints.
+    The app organizes notes under customizable categories called "Modes," which can be personalized for different types of note-taking.
+    Some of my favorite features include the ability to draw directly on notes, translate note content between languages, and fully customize the color scheme of each Mode.
+  learnings: >
+    I gained end-to-end experience with full-stack web development, including building RESTful routes, handling form data, implementing user authentication, and managing front-end behavior.
+    I also learned how to scope features from user stories and deliver iterative improvements across multiple sprints.
+    This project helped me strengthen my ability to design user-focused interfaces and integrate third-party libraries for advanced functionality.
+
+
+
+s3-sync-service:
+  title: Multi-User S3 Job Queue Service
+  description: >
+    An internal Python-based service that manages and executes S3 sync, copy, and other AWS S3 commands for multiple users in a queued, fault-tolerant, and portable way.
+  tech_stack: [Python, Boto3, Cron, multi-threading, JSONL]
+  did: >
+    I designed and implemented a Python service that manages and executes AWS S3 jobs (e.g., sync, copy) submitted by multiple users.
+    Jobs are submitted via a lightweight CLI and placed into a job queue, then processed sequentially by a background worker.
+    Users can also track the status of their jobs through the same CLI.
+    The service supports both Linux and Windows environments, with built-in logging, file locking, and per-job status tracking.
+    I used Python's threading and queue modules for task handling and implemented file locking to safely handle concurrent access to shared job files across mixed OS network shares.
+    Since this is an internal tool, the code is not available on my public GitHub.
+  learnings: >
+    I learned how to safely write and replace files using atomic operations, especially across NFS and heterogeneous environments.
+    I gained hands-on experience building portable CLI tools using Python’s standard library.
+    I addressed concurrency challenges in file access by using locking to prevent race conditions.
+    I also strengthened my understanding of background job processing using queues and multi-threading.
+
+
