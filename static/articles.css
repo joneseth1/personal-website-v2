@@ -1,0 +1,59 @@
+.articles-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px 2px #555;
+  background-color: #f8f9fa;
+}
+  
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.article-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 0px 2px 2px #292929;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.article-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.article-card .date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.article-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.article-card a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #297af3;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.article-card a:hover {
+  color: #6a11cb;
+}
