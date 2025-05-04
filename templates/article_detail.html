@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ slug.replace('-', ' ').title() }} - Article{% endblock %}
+{% block content %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='article_detail.css') }}">
+{% endblock %}
+
+
+  <p>&nbsp</p>
+  <p>&nbsp</p>
+  <p>&nbsp</p>
+
+  <div class="article-container">
+    <div class="pdf-container">
+      <iframe src="{{ url_for('static', filename='pdfs/' + article.slug + '.pdf') }}" class="pdf-iframe">
+        This browser does not support PDFs. Please download the PDF to view it:
+        <a href="{{ url_for('static', filename='pdfs/' + article.slug + '.pdf') }}">Download PDF</a>.
+      </iframe>
+    </div>
+  </div>
+{% endblock %}
