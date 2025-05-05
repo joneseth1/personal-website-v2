@@ -1,15 +1,9 @@
 [
     {
       "slug": "first_artcile",
-      "title": "Deep Learning for Image Inpainting",
+      "title": "Notes on https://doi.org/10.1016/j.jcp.2018.10.045",
       "date": "2025-04-28",
-      "summary": "A technical breakdown of how CNNs are used to reconstruct images with missing regions."
-    },
-    {
-      "slug": "pinns-overview",
-      "title": "Understanding PINNs",
-      "date": "2025-03-21",
-      "summary": "Exploring Physics-Informed Neural Networks and their applications in PDEs."
+      "summary": "Some old notes of mine from https://doi.org/10.1016/j.jcp.2018.10.045"
     }
   ]
   
