@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} - Seth Jones{% endblock %}
+{% block content %}
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='project_detail.css') }}">
+
+  <p>&nbsp</p>
+  <p>&nbsp</p>
+  <p>&nbsp</p>
+
+
+  <div class="project-detail">
+    <h1><u>{{ project.title }}</u></h1>
+      {% if project.github %}
+          <a href="{{ project.github }}" target="_blank">View on GitHub</a>
+      {% endif %}  
+      <p>&nbsp</p>
+      <p>{{ project.description }}</p>
+
+
+    <h2>Tech Stack</h2>
+    <ul>
+      {% for tech in project.tech_stack %}
+        <li>{{ tech }}</li>
+      {% endfor %}
+    </ul>
+
+    {% if project.did %}
+      <h2>What I Did</h2>
+      <p>{{ project.did }}</p>
+    {% endif %}
+
+    {% if project.learnings %}
+      <h2>What I Learned</h2>
+      <p>{{ project.learnings }}</p>
+    {% endif %}
+  </div>
+  
+{% endblock %}

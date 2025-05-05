@@ -1,0 +1,78 @@
+body {
+  background-image: url("./images/blury_blue.svg");
+}
+
+.project-detail {
+  background-color: var(--bg-color);
+  padding: 40px 20px 60px; 
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0px 0px 2px 2px #292929;
+}
+
+.project-detail h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.project-detail p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.project-detail ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.project-detail li {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.project-detail a {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.project-detail a:hover {
+  color: var(--secondary-color);
+}
+
+.project-detail img {
+  display: block;
+  max-width: 100%;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.project-section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+@media (max-width: 768px) {
+  .project-detail {
+    padding: 80px 16px 40px; 
+  }
+
+  .project-detail h1 {
+    font-size: 2rem;
+  }
+
+  .project-detail p,
+  .project-detail li {
+    font-size: 1rem;
+  }
+}
